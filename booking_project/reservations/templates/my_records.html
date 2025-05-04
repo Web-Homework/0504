@@ -1,0 +1,26 @@
+{% extends "reservations/base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2>My Reservations</h2>
+  <table class="table">
+    <thead><tr><th>Seat</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for r in recs %}
+      <tr>
+        <td>{{ r.seat }}</td>
+        <td>{{ r.timeslot }}</td>
+        <td>{{ r.get_status_display }}</td>
+        <td>
+          {% if r.status == "booked" %}
+          <form method="post" style="display:inline">{% csrf_token %}
+            <input type="hidden" name="reservation_id" value="{{ r.id }}">
+            <button name="cancel" class="btn btn-sm btn-danger">Cancel</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

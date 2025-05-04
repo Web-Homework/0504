@@ -1,0 +1,15 @@
+{% extends "reservations/base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Choose a Time Slot</h2>
+  <div class="row">
+    {% for slot in slots %}
+      <div class="col-md-3 mb-3">
+        <a href="{% url 'reserve_time' slot.id %}" class="btn btn-outline-primary w-100">
+          {{ slot }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "reservations/base.html" %}
+{% block head_js %}
+<script src="{% static 'js/seat_map.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Reserve for {{ slot }}</h2>
+  <div id="seat-map" data-slot-id="{{ slot.id }}" class="d-flex flex-wrap" style="max-width:400px;">
+    {% for seat in seats %}
+      <div class="seat p-2 m-1 border" data-seat-id="{{ seat.id }}">
+        {{ seat }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
